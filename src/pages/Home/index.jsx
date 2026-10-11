@@ -5,6 +5,7 @@ import { Header } from "@/components/layouts/Header";
 import { HeroSection } from "@/features/home/HeroSection";
 import { HowItWorksSection } from "@/features/home/HowItWorksSection";
 import { ServicesSection } from "@/features/home/ServicesSection";
+import { TeamSection } from "@/features/home/TeamSection";
 export function Home(){
 
     const navLinks = [
@@ -22,6 +23,7 @@ export function Home(){
             <HeroSection/>
             <HowItWorksSection/>
             <ServicesSection/>
+            <TeamSection/>
         </>
 
     );

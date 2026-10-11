@@ -1,13 +1,12 @@
 import { Container } from "@/components/layouts/Container";
+
+const steps = [
+  { titulo: "Escolha o serviço", desc: "Corte, Barba ..." },
+  {titulo: "Escolha barbeiro e horário", desc: "Vários horários livres de cada profissional."},
+  { titulo: "Confirme", desc: "Pronto, é só aparecer no horário marcado." },
+];
+
 export function HowItWorksSection() {
-  const steps = [
-    { titulo: "Escolha o serviço", desc: "Corte, Barba ..." },
-    {
-      titulo: "Escolha barbeiro e horário",
-      desc: "Vários horários livres de cada profissional.",
-    },
-    { titulo: "Confirme", desc: "Pronto, é só aparecer no horário marcado." },
-  ];
 
   return (
     <section className=" bg-card">

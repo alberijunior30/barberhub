@@ -4,15 +4,18 @@ import { Link } from "react-router";
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button";
 import { Container } from "@/components/layouts/Container";
-export function ServicesSection(){
+
     const services = [
   { id: "corte", name: "Corte", duration: "[duração]", price: "[R$ 00]" },
   { id: "barba", name: "Barba", duration: "[duração]", price: "[R$ 00]" },
   { id: "corte-barba", name: "Corte + barba", duration: "[duração]", price: "[R$ 00]" },
   { id: "sobrancelha", name: "Sobrancelha", duration: "[duração]", price: "[R$ 00]" },
 ];
+
+export function ServicesSection(){
+
     return (
-      <section id="servicos" className="">
+      <section id="servicos">
         <Container className=" py-20 flex flex-col gap-10">
           <div className="flex flex-col text-center gap-3">
             <h2 className="font-bold text-3xl">Serviços</h2>
