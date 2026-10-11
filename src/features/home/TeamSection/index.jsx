@@ -20,7 +20,7 @@ export function TeamSection(){
           <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {barbers.map((barber) => (
               <li key={barber.id} className="flex gap-3 flex-col items-center text-center">
-                <Avatar className=" size-32">
+                <Avatar className="size-32">
                   <AvatarImage src={avatarLogo} alt={`Foto de ${barber.name}`}/>
                   <AvatarFallback className="text-2xl">{barber.initial}</AvatarFallback>
                 </Avatar>

@@ -6,6 +6,7 @@ import { HeroSection } from "@/features/home/HeroSection";
 import { HowItWorksSection } from "@/features/home/HowItWorksSection";
 import { ServicesSection } from "@/features/home/ServicesSection";
 import { TeamSection } from "@/features/home/TeamSection";
+import { ContactSection } from "@/features/home/ContactSection";
 export function Home(){
 
     const navLinks = [
@@ -24,6 +25,7 @@ export function Home(){
             <HowItWorksSection/>
             <ServicesSection/>
             <TeamSection/>
+            <ContactSection time="[Dias e horários de atendimento]" address="[Rua, número — bairro, cidade]"/>
         </>
 
     );
