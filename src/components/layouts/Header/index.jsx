@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import { Container } from "@/components/layouts/Container";
+import { business } from "@/Config/Business";
 
 export function Header({links = [],actions}) {
   const [state, setState] = useState(false);
@@ -16,7 +17,7 @@ export function Header({links = [],actions}) {
       <Container className="py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <img className="rounded-full size-10 md:size-15" src={Logo} alt="Logo do Sistema" />
-          <span className="text-sm md:text-xl font-bold uppercase leading-none">[nome da sua barbearia aqui]</span>
+          <span className="text-sm md:text-xl font-bold uppercase leading-none">{business.name}</span>
         </div>
 
         <div className="flex items-center gap-4">
