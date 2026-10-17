@@ -24,7 +24,7 @@ export function ContactSection() {
             href={`https://wa.me/${business.whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
-            className={cn(buttonVariants({ size: "lg" }),"w-fit h-12 px-6 text-base gap-2",)}>
+            className={cn(buttonVariants({ size: "lg" }),"w-full md:w-fit h-12 px-6 text-base gap-2",)}>
 
             <MessageCircle aria-hidden="true" className="size-5" />
             Falar no WhatsApp
