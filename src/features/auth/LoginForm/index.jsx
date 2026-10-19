@@ -6,9 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 
-export function Login(){
+export function LoginForm(){
+
+  function handleSubmit(event){
+    event.preventDefault();
+    console.log("enviou")
+  }
+
     return (
-      <Card className="w-full max-w-sm bg-card p-7  shadow-xl/30">
+      <Card className="w-full max-w-sm p-7  shadow-xl/30">
         <CardHeader className="text-center">
           <img
             className="rounded-full size-20 mb-7 mx-auto"
@@ -19,19 +25,16 @@ export function Login(){
           <CardTitle className="text-xl">Bem-vindo</CardTitle>
         </CardHeader>
 
-        <form
-          className="flex flex-col items-center gap-3"
-          action=""
-          method="post"
-        >
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <Field>
             <FieldLabel htmlFor="email">Email</FieldLabel>
             <Input
-              className="border-white/20 focus-visible:border-primary focus-visible:ring-0"
+              className="focus-visible:border-primary focus-visible:ring-0"
               id="email"
               name="email"
               type="email"
-              placeholder="endereço de email"
+              placeholder="voce@exemplo.com"
+              autoComplete="email"
               required
             />
           </Field>
@@ -39,11 +42,12 @@ export function Login(){
           <Field>
             <FieldLabel htmlFor="senha">Senha</FieldLabel>
             <Input
-              className="border-white/20 focus-visible:border-primary focus-visible:ring-0"
+              className="focus-visible:border-primary focus-visible:ring-0"
               id="senha"
               name="senha"
               type="password"
               placeholder="••••••••"
+              autoComplete="current-password"
               required
             />
           </Field>
@@ -58,16 +62,13 @@ export function Login(){
 
             <Link
               to="/recover"
-              className="underline text-primary hover:text-primary/70"
+              className="text-sm text-muted-foreground underline hover:text-foreground"
             >
               Esqueci minha senha
             </Link>
           </div>
 
-          <Button
-            className="w-full mt-6 bg-primary p-5"
-            type="submit"
-          >
+          <Button className="w-full mt-6 h-11" type="submit">
             Logar
           </Button>
         </form>
