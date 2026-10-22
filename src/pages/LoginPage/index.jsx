@@ -1,6 +1,6 @@
 import { LoginForm } from "../../features/auth/LoginForm"
 
-export function LoginPages(){
+export function LoginPage(){
     return (
         <LoginForm />
     );
