@@ -21,12 +21,12 @@ export function RegisterForm() {
       return;
     }
     
-    setError("")
-    console.log(dados)
+    setError("");
+    console.log(dados);
       
 }
   return (
-    <Card className="w-full max-w-sm p-5 sm:p-7 shadow-xl/30">
+    <Card className="w-full max-w-md p-5 sm:p-7 shadow-xl/30">
       <CardHeader className="text-center">
         <img
           className="rounded-full size-20 mb-7 mx-auto"
@@ -34,26 +34,31 @@ export function RegisterForm() {
           alt="Logo do Sistema"
         />
 
-        <CardTitle className="text-xl">Criar Conta</CardTitle>
+        <CardTitle className="text-xl">Criar conta</CardTitle>
       </CardHeader>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <FormField id="fullName" label="Nome completo" autoComplete="name" />
-        <FormField
-          id="cpf"
-          label="CPF"
-          inputMode="numeric"
-          placeholder="000.000.000-00"
-        />
-        <FormField
-          id="birthDate"
-          label="Data de nascimento"
-          type="date"
-          placeholder="00/00/0000"
-        />
+        <div className="grid gap-4 sm:grid-cols-2">
+          <FormField
+            id="cpf"
+            label="CPF"
+            inputMode="numeric"
+            placeholder="000.000.000-00"
+            autoComplete="off"
+          />
+          <FormField
+            id="birthDate"
+            label="Data de nascimento"
+            type="date"
+            autoComplete="bday"
+          />
+        </div>
         <FormField
           id="phone"
           label="Telefone/WhatsApp"
-          placeholder="(00)00000-0000"
+          type="tel"
+          autoComplete="tel"
+          placeholder="(85) 90000-0000"
         />
         <EmailField />
         <PasswordField autoComplete="new-password" />
@@ -66,9 +71,9 @@ export function RegisterForm() {
           <FieldError>{error}</FieldError>
         </div>
         <div className="flex items-start gap-2">
-          <Checkbox id="terms" name="terms" required />
-          <label htmlFor="terms" className="text-sm whitespace-nowrap">
-            Aceitar termos e condições
+          <Checkbox id="terms" name="terms" required className="mt-0.5" />
+          <label htmlFor="terms" className="text-sm text-muted-foreground">
+            Li e aceito os termos de uso e a política de privacidade
           </label>
         </div>
         <Button className="w-full mt-6 h-11" type="submit">
