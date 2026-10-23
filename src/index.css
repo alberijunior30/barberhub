@@ -49,6 +49,7 @@
 }
 
 :root {
+    color-scheme: dark;
     --background: #141b20;
     --foreground: #ffffff;
     --card: #19212b;

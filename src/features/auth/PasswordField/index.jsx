@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import {Eye, EyeOff} from "lucide-react"
 import { useState } from "react";
 
-export function PasswordField({id = "password", name = "password", autoComplete = "current-password", label="Senha"}) {
+export function PasswordField({id = "password", name = id, autoComplete = "current-password", label="Senha"}) {
 
 const [visible, setVisible] = useState(false)
 

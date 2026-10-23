@@ -1,7 +1,7 @@
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
-export function EmailField({id = "email", name = "email", label = "Email"}) {
+export function EmailField({id = "email", name = id, label = "Email"}) {
   return (
     <Field>
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
