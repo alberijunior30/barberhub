@@ -1,4 +1,4 @@
-import { Card, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router";
 import { cn } from "@/lib/utils"
@@ -28,7 +28,7 @@ export function ServicesSection(){
             {services.map((service) => (
               <li key={service.id}>
                 <Card className="h-full bg-card  p-5">
-                  <CardTitle className="font-semibold text-lg"><h3>{service.name}</h3></CardTitle>
+                  <h1 className="font-semibold text-lg"><h3>{service.name}</h3></h1>
                   <Badge className="w-fit">{service.duration}</Badge>
                   <p className="text-2xl font-bold">{service.price}</p>
                   <Link to="/login"className={cn(buttonVariants(),"w-full h-11",)}>Agendar</Link>

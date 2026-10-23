@@ -1,13 +1,14 @@
 import { Link } from "react-router";
 import Logo from "@/assets/images.png";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { EmailField } from "@/features/auth/EmailField";
 import { PasswordField } from "@/features/auth/PasswordField";
 import { FormField } from "@/components/form/FormField";
 import { FieldError } from "@/components/ui/field";
 import { useState } from "react";
+import { business } from "@/config/business";
 
 export function RegisterForm() {
 
@@ -31,10 +32,12 @@ export function RegisterForm() {
         <img
           className="rounded-full size-20 mb-7 mx-auto"
           src={Logo}
-          alt="Logo do Sistema"
+          alt={`Logo ${business.name}`}
         />
 
-        <CardTitle className="text-xl">Criar conta</CardTitle>
+        <h1 className="font-heading text-xl leading-snug font-medium">
+          Criar conta
+        </h1>
       </CardHeader>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <FormField id="fullName" label="Nome completo" autoComplete="name" />
