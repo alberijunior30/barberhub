@@ -1,9 +1,9 @@
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Link } from "react-router";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 import { Container } from "@/components/layouts/Container";
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import { Link } from "react-router";
 
 const services = [
   { id: "corte", name: "Corte", duration: "[duração]", price: "[R$ 00]" },
@@ -25,9 +25,7 @@ export function ServicesSection() {
           {services.map((service) => (
             <li key={service.id}>
               <Card className="h-full bg-card p-5">
-                <h1 className="text-lg font-semibold">
-                  <h3>{service.name}</h3>
-                </h1>
+                <h3 className="text-lg font-semibold">{service.name}</h3>
                 <Badge className="w-fit">{service.duration}</Badge>
                 <p className="text-2xl font-bold">{service.price}</p>
                 <Link to="/login" className={cn(buttonVariants(), "h-11 w-full")}>
