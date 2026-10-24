@@ -14,30 +14,34 @@ import { Link } from "react-router";
 export function RegisterForm() {
   const [cpf, setCpf] = useState("");
   const [birthDate, setBirthDate] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [birthDateError, setBirthDateError] = useState("");
+
+  const [errors, setErrors] = useState({});
 
   function handleSubmit(event) {
     event.preventDefault();
 
     const dados = Object.fromEntries(new FormData(event.currentTarget));
+    const newErrors = {};
 
     if (!isValidBirthDate(dados.birthDate)) {
-      setBirthDateError("Informe uma data de nascimento válida.");
-      return;
+      newErrors.birthDate = "Informe uma data de nascimento válida.";
     }
-
-    setBirthDateError("");
 
     if (dados.password !== dados.confirmPassword) {
-      setPasswordError("As senhas não são iguais");
+      newErrors.confirmPassword = "As senhas não são iguais.";
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
       return;
     }
 
-    setPasswordError("");
     dados.birthDate = toIsoDate(dados.birthDate);
     console.log(dados);
+    console.log(errors);
   }
+
   return (
     <Card className="w-full max-w-md p-5 shadow-xl/30 sm:p-7">
       <CardHeader className="text-center">
@@ -69,7 +73,7 @@ export function RegisterForm() {
             placeholder="dd/mm/aaaa"
             value={birthDate}
             onChange={(event) => setBirthDate(formatDate(event.target.value))}
-            error={birthDateError}
+            error={errors.birthDate}
           />
         </div>
         <FormField
@@ -86,7 +90,7 @@ export function RegisterForm() {
           id="confirmPassword"
           label="Confirme a senha"
           autoComplete="new-password"
-          error={passwordError}
+          error={errors.confirmPassword}
         />
 
         <div className="flex items-start gap-2">
