@@ -9,9 +9,11 @@ import { FormField } from "@/components/form/FormField";
 import { FieldError } from "@/components/ui/field";
 import { useState } from "react";
 import { business } from "@/config/business";
+import { formatCpf } from "@/lib/masks";
 
 export function RegisterForm() {
 
+  const [cpf,setCpf] = useState("")
   const [error, setError] = useState("")
 
   function handleSubmit(event){
@@ -48,6 +50,8 @@ export function RegisterForm() {
             inputMode="numeric"
             placeholder="000.000.000-00"
             autoComplete="off"
+            value={cpf}
+            onChange={(event)=>setCpf(formatCpf(event.target.value))}
           />
           <FormField
             id="birthDate"
