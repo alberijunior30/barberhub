@@ -1,11 +1,5 @@
 import Logo from "@/assets/images.png";
-import {
-  Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
@@ -22,20 +16,16 @@ export function Header({ links = [], actions }) {
 
   return (
     <header className="bg-card shadow-xl/30">
-      <Container className="py-3 flex items-center justify-between">
+      <Container className="flex items-center justify-between py-3">
         <div className="flex items-center gap-3">
-          <img
-            className="rounded-full size-10 md:size-15"
-            src={Logo}
-            alt="Logo do Sistema"
-          />
-          <span className="text-sm md:text-xl font-bold uppercase leading-none">
+          <img className="size-10 rounded-full md:size-15" src={Logo} alt="Logo do Sistema" />
+          <span className="text-sm leading-none font-bold uppercase md:text-xl">
             {business.name}
           </span>
         </div>
 
         <div className="flex items-center gap-4">
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden items-center gap-6 md:flex">
             {links.map((link) => (
               <a key={link.href} href={link.href}>
                 {link.Label}
@@ -46,14 +36,11 @@ export function Header({ links = [], actions }) {
           <Sheet open={state} onOpenChange={setState}>
             <SheetTrigger
               aria-label="Abrir menu"
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "md:hidden",
-              )}
+              className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "md:hidden")}
             >
               <Menu />
             </SheetTrigger>
-            <SheetContent side="right" className="bg-card ">
+            <SheetContent side="right" className="bg-card">
               <SheetHeader>
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>

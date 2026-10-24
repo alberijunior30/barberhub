@@ -1,12 +1,16 @@
-import { Field, FieldLabel } from "@/components/ui/field";
+import { Field, FieldLabel, FieldError } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import {Eye, EyeOff} from "lucide-react"
+import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 
-export function PasswordField({id = "password", name = id, autoComplete = "current-password", label="Senha"}) {
-
-const [visible, setVisible] = useState(false)
-
+export function PasswordField({
+  id = "password",
+  name = id,
+  autoComplete = "current-password",
+  label = "Senha",
+  error,
+}) {
+  const [visible, setVisible] = useState(false);
 
   return (
     <Field>
@@ -20,6 +24,7 @@ const [visible, setVisible] = useState(false)
           placeholder="••••••••"
           autoComplete={autoComplete}
           required
+          aria-invalid={!!error}
         />
         <button
           className="absolute inset-y-0 right-0 flex items-center px-3"
@@ -28,12 +33,13 @@ const [visible, setVisible] = useState(false)
           onClick={() => setVisible(!visible)}
         >
           {visible ? (
-            <EyeOff className="text-muted-foreground hover:text-foreground size-4" />
+            <EyeOff className="size-4 text-muted-foreground hover:text-foreground" />
           ) : (
-            <Eye className="text-muted-foreground hover:text-foreground size-4" />
+            <Eye className="size-4 text-muted-foreground hover:text-foreground" />
           )}
         </button>
       </div>
+      <FieldError>{error}</FieldError>
     </Field>
   );
 }

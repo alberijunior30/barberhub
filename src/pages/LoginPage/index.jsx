@@ -1,7 +1,5 @@
-import { LoginForm } from "../../features/auth/LoginForm"
+import { LoginForm } from "../../features/auth/LoginForm";
 
-export function LoginPage(){
-    return (
-        <LoginForm />
-    );
+export function LoginPage() {
+  return <LoginForm />;
 }

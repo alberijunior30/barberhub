@@ -1,45 +1,53 @@
-import { Link } from "react-router";
 import Logo from "@/assets/images.png";
+import { FormField } from "@/components/form/FormField";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import { business } from "@/config/business";
 import { EmailField } from "@/features/auth/EmailField";
 import { PasswordField } from "@/features/auth/PasswordField";
-import { FormField } from "@/components/form/FormField";
-import { FieldError } from "@/components/ui/field";
+import { formatCpf, formatDate, toIsoDate } from "@/lib/masks";
+import { isValidBirthDate } from "@/lib/validators";
 import { useState } from "react";
-import { business } from "@/config/business";
-import { formatCpf } from "@/lib/masks";
+import { Link } from "react-router";
 
 export function RegisterForm() {
+  const [cpf, setCpf] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [birthDateError, setBirthDateError] = useState("");
 
-  const [cpf,setCpf] = useState("")
-  const [error, setError] = useState("")
+  function handleSubmit(event) {
+    event.preventDefault();
 
-  function handleSubmit(event){
-    event.preventDefault()
-    const dados = Object.fromEntries(new FormData(event.currentTarget))
-    if(dados.password !== dados.confirmPassword){
-      setError("As senhas não são iguais");
+    const dados = Object.fromEntries(new FormData(event.currentTarget));
+
+    if (!isValidBirthDate(dados.birthDate)) {
+      setBirthDateError("Informe uma data de nascimento válida.");
       return;
     }
-    
-    setError("");
+
+    setBirthDateError("");
+
+    if (dados.password !== dados.confirmPassword) {
+      setPasswordError("As senhas não são iguais");
+      return;
+    }
+
+    setPasswordError("");
+    dados.birthDate = toIsoDate(dados.birthDate);
     console.log(dados);
-      
-}
+  }
   return (
-    <Card className="w-full max-w-md p-5 sm:p-7 shadow-xl/30">
+    <Card className="w-full max-w-md p-5 shadow-xl/30 sm:p-7">
       <CardHeader className="text-center">
         <img
-          className="rounded-full size-20 mb-7 mx-auto"
+          className="mx-auto mb-7 size-20 rounded-full"
           src={Logo}
           alt={`Logo ${business.name}`}
         />
 
-        <h1 className="font-heading text-xl leading-snug font-medium">
-          Criar conta
-        </h1>
+        <h1 className="font-heading text-xl leading-snug font-medium">Criar conta</h1>
       </CardHeader>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <FormField id="fullName" label="Nome completo" autoComplete="name" />
@@ -51,13 +59,17 @@ export function RegisterForm() {
             placeholder="000.000.000-00"
             autoComplete="off"
             value={cpf}
-            onChange={(event)=>setCpf(formatCpf(event.target.value))}
+            onChange={(event) => setCpf(formatCpf(event.target.value))}
           />
           <FormField
             id="birthDate"
             label="Data de nascimento"
-            type="date"
             autoComplete="bday"
+            inputMode="numeric"
+            placeholder="dd/mm/aaaa"
+            value={birthDate}
+            onChange={(event) => setBirthDate(formatDate(event.target.value))}
+            error={birthDateError}
           />
         </div>
         <FormField
@@ -69,31 +81,28 @@ export function RegisterForm() {
         />
         <EmailField />
         <PasswordField autoComplete="new-password" />
-        <div>
-          <PasswordField
-            id="confirmPassword"
-            label="Confirme a senha"
-            autoComplete="new-password"
-          />
-          <FieldError>{error}</FieldError>
-        </div>
+
+        <PasswordField
+          id="confirmPassword"
+          label="Confirme a senha"
+          autoComplete="new-password"
+          error={passwordError}
+        />
+
         <div className="flex items-start gap-2">
           <Checkbox id="terms" name="terms" required className="mt-0.5" />
           <label htmlFor="terms" className="text-sm text-muted-foreground">
             Li e aceito os termos de uso e a política de privacidade
           </label>
         </div>
-        <Button className="w-full mt-6 h-11" type="submit">
+        <Button className="mt-6 h-11 w-full" type="submit">
           Cadastrar-se
         </Button>
       </form>
 
       <p className="text-center">
         Já tem uma conta?{" "}
-        <Link
-          to="/login"
-          className="underline text-primary hover:text-primary/70"
-        >
+        <Link to="/login" className="text-primary underline hover:text-primary/70">
           Entrar
         </Link>
       </p>

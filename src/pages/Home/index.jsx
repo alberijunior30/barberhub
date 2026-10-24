@@ -8,27 +8,33 @@ import { ServicesSection } from "@/features/home/ServicesSection";
 import { TeamSection } from "@/features/home/TeamSection";
 import { ContactSection } from "@/features/home/ContactSection";
 import { Footer } from "@/components/layouts/Footer";
-export function Home(){
+export function Home() {
+  const navLinks = [
+    { href: "#servicos", Label: "Serviços" },
+    { href: "#equipe", Label: "Equipe" },
+    { href: "#contato", Label: "Contato" },
+  ];
 
-    const navLinks = [
-        {href:"#servicos", Label:"Serviços"},
-        {href:"#equipe", Label:"Equipe"},
-        {href:"#contato", Label:"Contato"}
-    ]
+  return (
+    <>
+      <Header
+        links={navLinks}
+        actions={
+          <Link to="/login" className={cn(buttonVariants(), "p-5")}>
+            Entrar
+          </Link>
+        }
+      />
 
-    return (
-        <>
-            <Header 
-            links={navLinks}
-            actions={<Link to="/login"className={cn(buttonVariants(),"p-5",)}>Entrar</Link>}/>
-
-            <HeroSection/>
-            <HowItWorksSection/>
-            <ServicesSection/>
-            <TeamSection/>
-            <ContactSection time="[Dias e horários de atendimento]" address="[Rua, número — bairro, cidade]"/>
-            <Footer/>
-        </>
-
-    );
+      <HeroSection />
+      <HowItWorksSection />
+      <ServicesSection />
+      <TeamSection />
+      <ContactSection
+        time="[Dias e horários de atendimento]"
+        address="[Rua, número — bairro, cidade]"
+      />
+      <Footer />
+    </>
+  );
 }

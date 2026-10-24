@@ -2,25 +2,21 @@ import { Container } from "@/components/layouts/Container";
 
 const steps = [
   { titulo: "Escolha o serviço", desc: "Corte, Barba ..." },
-  {titulo: "Escolha barbeiro e horário", desc: "Vários horários livres de cada profissional."},
+  { titulo: "Escolha barbeiro e horário", desc: "Vários horários livres de cada profissional." },
   { titulo: "Confirme", desc: "Pronto, é só aparecer no horário marcado." },
 ];
 
 export function HowItWorksSection() {
-
   return (
-    <section className=" bg-card">
-      <Container className="py-20 flex flex-col gap-10">
-        <h2 className="font-bold text-center text-3xl">Como funciona</h2>
-        <ol className="grid md:grid-cols-3 gap-6">
+    <section className="bg-card">
+      <Container className="flex flex-col gap-10 py-20">
+        <h2 className="text-center text-3xl font-bold">Como funciona</h2>
+        <ol className="grid gap-6 md:grid-cols-3">
           {steps.map((step, i) => (
-            <li
-              key={step.titulo}
-              className="flex items-center flex-col text-center gap-3"
-            >
+            <li key={step.titulo} className="flex flex-col items-center gap-3 text-center">
               <span
                 aria-hidden="true"
-                className="flex bg-primary size-12 items-center justify-center rounded-full font-bold"
+                className="flex size-12 items-center justify-center rounded-full bg-primary font-bold"
               >
                 {i + 1}
               </span>

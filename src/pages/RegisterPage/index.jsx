@@ -1,6 +1,4 @@
-import { RegisterForm } from "@/features/auth/RegisterForm"
-export function RegisterPage(){
-    return(
-        <RegisterForm/>
-    )
+import { RegisterForm } from "@/features/auth/RegisterForm";
+export function RegisterPage() {
+  return <RegisterForm />;
 }
