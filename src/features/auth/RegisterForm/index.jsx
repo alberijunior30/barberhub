@@ -10,10 +10,12 @@ import { formatCpf, formatDate, toIsoDate } from "@/lib/masks";
 import { isValidBirthDate, isValidCpf } from "@/lib/validators";
 import { useState } from "react";
 import { Link } from "react-router";
+import { PhoneField } from "@/components/form/PhoneField";
 
 export function RegisterForm() {
   const [cpf, setCpf] = useState("");
   const [birthDate, setBirthDate] = useState("");
+  const [phone, setPhone] = useState("");
 
   const [errors, setErrors] = useState({});
 
@@ -43,7 +45,6 @@ export function RegisterForm() {
 
     dados.birthDate = toIsoDate(dados.birthDate);
     console.log(dados);
-
   }
 
   return (
@@ -81,12 +82,10 @@ export function RegisterForm() {
             error={errors.birthDate}
           />
         </div>
-        <FormField
-          id="phone"
-          label="Telefone/WhatsApp"
-          type="tel"
-          autoComplete="tel"
-          placeholder="(85) 90000-0000"
+        <PhoneField
+          value={phone}
+          onChange={setPhone}
+          placeholder="Número com DDD"
         />
         <EmailField />
         <PasswordField autoComplete="new-password" />
