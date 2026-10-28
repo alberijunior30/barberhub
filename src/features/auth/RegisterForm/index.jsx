@@ -7,7 +7,7 @@ import { business } from "@/config/business";
 import { EmailField } from "@/features/auth/EmailField";
 import { PasswordField } from "@/features/auth/PasswordField";
 import { formatCpf, formatDate, toIsoDate } from "@/lib/masks";
-import { isValidBirthDate } from "@/lib/validators";
+import { isValidBirthDate, isValidCpf } from "@/lib/validators";
 import { useState } from "react";
 import { Link } from "react-router";
 
@@ -31,6 +31,10 @@ export function RegisterForm() {
       newErrors.confirmPassword = "As senhas não são iguais.";
     }
 
+    if (!isValidCpf(dados.cpf)) {
+      newErrors.cpf = "Informe um CPF válido.";
+    }
+
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length > 0) {
@@ -39,7 +43,7 @@ export function RegisterForm() {
 
     dados.birthDate = toIsoDate(dados.birthDate);
     console.log(dados);
-    console.log(errors);
+
   }
 
   return (
@@ -64,6 +68,7 @@ export function RegisterForm() {
             autoComplete="off"
             value={cpf}
             onChange={(event) => setCpf(formatCpf(event.target.value))}
+            error={errors.cpf}
           />
           <FormField
             id="birthDate"
