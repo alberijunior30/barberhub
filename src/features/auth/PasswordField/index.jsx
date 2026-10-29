@@ -1,4 +1,4 @@
-import { Field, FieldLabel, FieldError } from "@/components/ui/field";
+import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
@@ -8,6 +8,7 @@ export function PasswordField({
   name = id,
   autoComplete = "current-password",
   label = "Senha",
+  description,
   error,
 }) {
   const [visible, setVisible] = useState(false);
@@ -39,6 +40,7 @@ export function PasswordField({
           )}
         </button>
       </div>
+      {description &&<FieldDescription>{description}</FieldDescription>}
       <FieldError>{error}</FieldError>
     </Field>
   );

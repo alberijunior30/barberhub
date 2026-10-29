@@ -1,4 +1,6 @@
 const MIN_BIRTH_YEAR = 1900;
+const MIN_PASSWORD_LENGTH = 8;
+const MAX_PASSWORD_LENGTH = 64;
 export function isValidBirthDate(date) {
   if (date.length !== 10) {
     return false;
@@ -44,4 +46,8 @@ function calculateCheckDigit(base) {
   const remainder = (sum * 10) % 11;
 
   return remainder === 10 ? 0 : remainder;
+}
+
+export function isValidPassword(value){
+  return value.length >= MIN_PASSWORD_LENGTH && value.length <= MAX_PASSWORD_LENGTH
 }

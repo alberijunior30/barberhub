@@ -8,7 +8,7 @@ import { business } from "@/config/business";
 import { EmailField } from "@/features/auth/EmailField";
 import { PasswordField } from "@/features/auth/PasswordField";
 import { formatCpf, formatDate, toIsoDate } from "@/lib/masks";
-import { isValidBirthDate, isValidCpf } from "@/lib/validators";
+import { isValidBirthDate, isValidCpf, isValidPassword } from "@/lib/validators";
 import { useState } from "react";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import { Link } from "react-router";
@@ -30,6 +30,10 @@ export function RegisterForm() {
       newErrors.birthDate = "Informe uma data de nascimento válida.";
     }
 
+    if (!isValidPassword(dados.password)) {
+      newErrors.password = "A senha deve ter entre 8 e 64 caracteres";
+    }
+
     if (dados.password !== dados.confirmPassword) {
       newErrors.confirmPassword = "As senhas não são iguais.";
     }
@@ -49,7 +53,7 @@ export function RegisterForm() {
     }
 
     dados.birthDate = toIsoDate(dados.birthDate);
-    dados.phone = phone
+    dados.phone = phone;
     console.log(dados);
   }
 
@@ -88,9 +92,18 @@ export function RegisterForm() {
             error={errors.birthDate}
           />
         </div>
-        <PhoneField value={phone} onChange={setPhone} placeholder="Número com DDD" error={errors.phone}/>
+        <PhoneField
+          value={phone}
+          onChange={setPhone}
+          placeholder="Número com DDD"
+          error={errors.phone}
+        />
         <EmailField />
-        <PasswordField autoComplete="new-password" />
+        <PasswordField 
+        autoComplete="new-password"
+         description="Use entre 8 e 64 caracteres."
+         error={errors.password}
+        />
 
         <PasswordField
           id="confirmPassword"
