@@ -1,5 +1,6 @@
 import Logo from "@/assets/images.png";
 import { FormField } from "@/components/form/FormField";
+import { PhoneField } from "@/components/form/PhoneField";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -9,8 +10,8 @@ import { PasswordField } from "@/features/auth/PasswordField";
 import { formatCpf, formatDate, toIsoDate } from "@/lib/masks";
 import { isValidBirthDate, isValidCpf } from "@/lib/validators";
 import { useState } from "react";
+import { isValidPhoneNumber } from "react-phone-number-input";
 import { Link } from "react-router";
-import { PhoneField } from "@/components/form/PhoneField";
 
 export function RegisterForm() {
   const [cpf, setCpf] = useState("");
@@ -37,6 +38,10 @@ export function RegisterForm() {
       newErrors.cpf = "Informe um CPF válido.";
     }
 
+    if (!isValidPhoneNumber(phone)) {
+      newErrors.phone = "Informe um telefone válido.";
+    }
+
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length > 0) {
@@ -44,6 +49,7 @@ export function RegisterForm() {
     }
 
     dados.birthDate = toIsoDate(dados.birthDate);
+    dados.phone = phone
     console.log(dados);
   }
 
@@ -82,11 +88,7 @@ export function RegisterForm() {
             error={errors.birthDate}
           />
         </div>
-        <PhoneField
-          value={phone}
-          onChange={setPhone}
-          placeholder="Número com DDD"
-        />
+        <PhoneField value={phone} onChange={setPhone} placeholder="Número com DDD" error={errors.phone}/>
         <EmailField />
         <PasswordField autoComplete="new-password" />
 
