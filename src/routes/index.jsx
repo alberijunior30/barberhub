@@ -4,7 +4,7 @@ import { LoginPage } from "../pages/LoginPage";
 import { RecoverPasswordPage } from "../pages/RecoverPasswordPage";
 import { RegisterPage } from "../pages/RegisterPage";
 import { AuthLayout } from "@/features/auth/authLayout";
-
+import { ResetPasswordPage } from "@/pages/ResetPasswordPage";
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
   {
@@ -13,6 +13,7 @@ export const router = createBrowserRouter([
       { path: "/login", element: <LoginPage /> },
       { path: "/register", element: <RegisterPage /> },
       { path: "/recover", element: <RecoverPasswordPage /> },
+      { path: "/reset-password", element: <ResetPasswordPage /> },
     ],
   },
 ]);
