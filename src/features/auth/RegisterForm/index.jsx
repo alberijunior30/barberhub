@@ -1,10 +1,9 @@
-import Logo from "@/assets/images.png";
 import { FormField } from "@/components/form/FormField";
 import { PhoneField } from "@/components/form/PhoneField";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { business } from "@/config/business";
+import { AuthHeader } from "@/features/auth/AuthHeader";
 import { EmailField } from "@/features/auth/EmailField";
 import { PasswordField } from "@/features/auth/PasswordField";
 import { formatCpf, formatDate, toIsoDate } from "@/lib/masks";
@@ -59,15 +58,10 @@ export function RegisterForm() {
 
   return (
     <Card className="w-full max-w-md p-5 shadow-xl/30 sm:p-7">
-      <CardHeader className="text-center">
-        <img
-          className="mx-auto mb-7 size-20 rounded-full"
-          src={Logo}
-          alt={`Logo ${business.name}`}
-        />
-
-        <h1 className="font-heading text-xl leading-snug font-medium">Criar conta</h1>
-      </CardHeader>
+      <AuthHeader
+        title="Bem-vindo"
+        description="Cadastre-se para agendar seus horários com mais rapidez."
+      />
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <FormField id="fullName" label="Nome completo" autoComplete="name" />
         <div className="grid gap-4 sm:grid-cols-2">
@@ -99,10 +93,10 @@ export function RegisterForm() {
           error={errors.phone}
         />
         <EmailField />
-        <PasswordField 
-        autoComplete="new-password"
-         description="Use entre 8 e 64 caracteres."
-         error={errors.password}
+        <PasswordField
+          autoComplete="new-password"
+          description="Use entre 8 e 64 caracteres."
+          error={errors.password}
         />
 
         <PasswordField

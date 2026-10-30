@@ -1,11 +1,10 @@
-import { Link } from "react-router";
-import Logo from "@/assets/images.png";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { EmailField } from "@/features/auth/EmailField";
 import { PasswordField } from "@/features/auth/PasswordField";
-import { business } from "@/config/business";
+import { Link } from "react-router";
+import { AuthHeader } from "@/features/auth/AuthHeader";
 
 export function LoginForm() {
   function handleSubmit(event) {
@@ -15,16 +14,7 @@ export function LoginForm() {
 
   return (
     <Card className="w-full max-w-sm p-5 shadow-xl/30 sm:p-7">
-      <CardHeader className="text-center">
-        <img
-          className="mx-auto mb-7 size-20 rounded-full"
-          src={Logo}
-          alt={`Logo ${business.name}`}
-        />
-
-        <h1 className="font-heading text-xl leading-snug font-medium">Bem-vindo</h1>
-      </CardHeader>
-
+      <AuthHeader title="Bem-vindo" description="Entre para agendar seu horário." />
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <EmailField />
         <PasswordField />
