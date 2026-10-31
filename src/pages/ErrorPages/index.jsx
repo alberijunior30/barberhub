@@ -52,7 +52,9 @@ export function ErrorPage() {
   const error = useRouteError();
   const isNotFound = isRouteErrorResponse(error) && error.status === 404;
 
-  console.error(error);
+    if (!isNotFound) {
+      console.error(error);
+    }
 
   return (
     <main className="flex min-h-dvh flex-col items-center justify-center px-6 py-10 text-center">

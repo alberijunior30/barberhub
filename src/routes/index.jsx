@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Outlet } from "react-router";
 import { Home } from "@/pages/Home";
 import { LoginPage } from "../pages/LoginPage";
 import { RecoverPasswordPage } from "../pages/RecoverPasswordPage";
@@ -8,6 +8,7 @@ import { ResetPasswordPage } from "@/pages/ResetPasswordPage";
 import { ErrorPage } from "@/pages/ErrorPages";
 export const router = createBrowserRouter([
   {
+    element: <Outlet />,
     errorElement: <ErrorPage />,
     children: [
       { path: "/", element: <Home /> },
