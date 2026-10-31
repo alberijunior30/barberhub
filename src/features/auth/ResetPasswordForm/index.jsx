@@ -1,12 +1,16 @@
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { isValidPassword } from "@/lib/validators";
-import { useState } from "react";
-import { Link } from "react-router";
 import { AuthHeader } from "@/features/auth/AuthHeader";
 import { PasswordField } from "@/features/auth/PasswordField";
+import { cn } from "@/lib/utils";
+import { isValidPassword } from "@/lib/validators";
+import { useState } from "react";
+import { Link, useSearchParams } from "react-router";
 
 export function ResetPasswordForm() {
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
+  const [done, setDone] = useState(false);
   const [errors, setErrors] = useState({});
 
   function handleSubmit(event) {
@@ -29,8 +33,41 @@ export function ResetPasswordForm() {
       return;
     }
 
+    dados.token = token;
+
     console.log(dados);
+
+    setDone(true);
   }
+
+  if (!token) {
+    return (
+      <Card className="w-full max-w-sm p-5 shadow-xl/30 sm:p-7">
+        <AuthHeader
+          title="Link inválido"
+          description="Este link é inválido ou expirou."
+        />
+        <Link to="/recover" className={cn(buttonVariants(), "h-11 w-full")}>
+          Pedir um novo link
+        </Link>
+      </Card>
+    );
+  }
+
+  if (done) {
+    return (
+      <Card className="w-full max-w-sm p-5 shadow-xl/30 sm:p-7">
+        <AuthHeader
+          title="Senha redefinida"
+          description="Você já pode entrar com sua nova senha."
+        />
+        <Link to="/login" className={cn(buttonVariants(), "h-11 w-full")}>
+          Ir para o login
+        </Link>
+      </Card>
+    );
+  }
+
   return (
     <Card className="w-full max-w-sm p-5 shadow-xl/30 sm:p-7">
       <AuthHeader title="Redefinir senha" description="Crie uma nova senha para sua conta." />
