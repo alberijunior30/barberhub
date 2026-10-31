@@ -5,15 +5,21 @@ import { RecoverPasswordPage } from "../pages/RecoverPasswordPage";
 import { RegisterPage } from "../pages/RegisterPage";
 import { AuthLayout } from "@/features/auth/authLayout";
 import { ResetPasswordPage } from "@/pages/ResetPasswordPage";
+import { ErrorPage } from "@/pages/ErrorPages";
 export const router = createBrowserRouter([
-  { path: "/", element: <Home /> },
   {
-    element: <AuthLayout />,
+    errorElement: <ErrorPage />,
     children: [
-      { path: "/login", element: <LoginPage /> },
-      { path: "/register", element: <RegisterPage /> },
-      { path: "/recover", element: <RecoverPasswordPage /> },
-      { path: "/reset-password", element: <ResetPasswordPage /> },
+      { path: "/", element: <Home /> },
+      {
+        element: <AuthLayout />,
+        children: [
+          { path: "/login", element: <LoginPage /> },
+          { path: "/register", element: <RegisterPage /> },
+          { path: "/recover", element: <RecoverPasswordPage /> },
+          { path: "/reset-password", element: <ResetPasswordPage /> },
+        ],
+      },
     ],
   },
 ]);
