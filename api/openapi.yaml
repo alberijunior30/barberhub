@@ -1,0 +1,36 @@
+openapi: 3.1.0
+info:
+  title: BarberHub API
+  version: 1.0.0
+  description: API REST do BarberHub.
+paths:
+  /health:
+    get:
+      summary: Verifica se a API e o banco estão funcionando.
+      responses:
+        "200":
+          description: API e banco funcionando.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+                  database:
+                    type: string
+                    example: ok
+        "503":
+          description: Banco indisponível.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  database:
+                    type: string
+                    example: unavailable
