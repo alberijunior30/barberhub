@@ -4,6 +4,7 @@ import { join } from "node:path";
 import swaggerUi from "swagger-ui-express";
 import { parse } from "yaml";
 import { healthRoutes } from "./modules/health/health.routes.js";
+import { errorHandler } from "./middlewares/error-handler.js";
 
 const OPENAPI_PATH = join(import.meta.dirname, "..", "openapi.yaml");
 const openapiSpec = parse(readFileSync(OPENAPI_PATH, "utf8"));
@@ -14,3 +15,5 @@ app.use(express.json());
 
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(openapiSpec));
 app.use("/health", healthRoutes);
+
+app.use(errorHandler);
