@@ -30,7 +30,7 @@ export function RegisterForm() {
     }
 
     if (!isValidPassword(dados.password)) {
-      newErrors.password = "A senha deve ter entre 8 e 64 caracteres";
+      newErrors.password = "A senha deve ter entre 8 e 64 caracteres.";
     }
 
     if (dados.password !== dados.confirmPassword) {
@@ -63,7 +63,7 @@ export function RegisterForm() {
         description="Cadastre-se para agendar seus horários com mais rapidez."
       />
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-        <FormField id="fullName" label="Nome completo" autoComplete="name" />
+        <FormField id="name" label="Nome completo" autoComplete="name" />
         <div className="grid gap-4 sm:grid-cols-2">
           <FormField
             id="cpf"
